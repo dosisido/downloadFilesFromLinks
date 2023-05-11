@@ -9,4 +9,4 @@
 ## About links.txt
 The file is not included, but if you run [main.py](/main.py) the first time it autmatically
 creates it for you.  
-Then you need to insert one lin for line and it's done!
+Then you need to insert one link for line and it's done!

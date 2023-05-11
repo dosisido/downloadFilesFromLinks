@@ -3,6 +3,7 @@ import os
 
 FILE = "links.txt"
 DIR = "download"
+PREFIX = "material"
 
 def lectures_downloader(name, url):
     # ext = url.strip()[::-1].split('.', 1)[0][::-1]
@@ -34,7 +35,7 @@ def main():
     index = 1
     with open(FILE, 'r') as f:
         for line in f:
-            name = f"OOP - #" + format(index, '02d')
+            name = f"{PREFIX} - #" + format(index, '02d')
             url = line
             lectures_downloader(name, url)
             index += 1
