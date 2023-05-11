@@ -1,18 +1,16 @@
 import requests
 import os
 
-FILE = "lectures.txt"
-DIR = "lectures"
+FILE = "links.txt"
+DIR = "download"
 
 def lectures_downloader(name, url):
-    ext = url.strip()[::-1].split('.', 1)[0][::-1]
-    
+    # ext = url.strip()[::-1].split('.', 1)[0][::-1]
+
     r = requests.get(url, allow_redirects=True)
-    if 'video' not in r.headers.get('content-type'): 
-        print("Not video type")
-        
-    if ext != r.headers.get('content-type').replace('video/', ''):
-        print("Extension error")
+
+    content_type, ext = r.headers.get('content-type').strip().split('/')
+    print(f"content_type: {content_type}; extension : {ext}")
 
     path = os.path.join(DIR, f"{name}.{ext}")
     open(path, 'wb').write(r.content)
@@ -22,6 +20,13 @@ def lectures_downloader(name, url):
 
 
 def main():
+
+    if not os.path.exists(FILE):
+        open(FILE, 'w').close()
+        print(f"Created {FILE} file")
+        print(f"Please fill {FILE} file with links")
+        exit(0)
+
 
     if not os.path.exists(DIR):
         os.makedirs(DIR)
